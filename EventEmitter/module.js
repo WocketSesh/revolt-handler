@@ -5,7 +5,8 @@ class Events {
 
 	on(event, func) {
 		this.event = event;
-		if (typeof func != "function") return;
+		if (typeof func != "function")
+			throw new TypeError("Needs to be of type function.");
 		this.func = func;
 
 		a.push(this);
