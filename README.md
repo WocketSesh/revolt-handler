@@ -1,6 +1,6 @@
 # Revolt Command Handler
 
-#npm i revolt-handler
+npm i revolt-handler
 
 ```js
 const revolt = require("revolt.js");
