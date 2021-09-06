@@ -1,5 +1,7 @@
 # Revolt Command Handler
 
+npm i revolt-handler
+
 ```js
 const revolt = require("revolt.js");
 const client = new revolt.Client();
