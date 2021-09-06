@@ -18,7 +18,7 @@ const ping = new Command({
 });
 
 ping.on("ran", (message, args, exec) => {
-	message.channel.sendMessage(`Pong! \`Took 0ms to execute\``).then((x) => {
+	message.channel.sendMessage("Pong!").then((x) => {
 		x.edit({
 			content: `Pong! \`Took ${new Date().getTime() - exec}ms to execute\``,
 		});
