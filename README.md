@@ -9,7 +9,7 @@ const { Command, checkForCommand } = require("revolt-handler");
 
 client.loginBot("token");
 
-client.on("ready", () => console.log('Logged in')
+client.on("ready", () => console.log('Logged in'))
 
 const ping = new Command({
 	name: "ping",
