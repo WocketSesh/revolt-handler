@@ -48,9 +48,14 @@ class Command extends Events {
 const checkForCommand = (message, prefix) => {
 	let recieved = new Date().getTime();
 
-	if (!message || !message.content || !prefix) return;
-
-	if (!message.content.startsWith(prefix)) return;
+	if (
+		!message ||
+		!message.content ||
+		!prefix ||
+		typeof message.content != "string" || //temp fix to system messages giving an error?
+		!message.content.startsWith(prefix)
+	)
+		return;
 
 	let command = message.content.split(" ")[0].slice(prefix.length),
 		args = message.content.split(" ").splice(1);
