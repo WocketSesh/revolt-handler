@@ -5,15 +5,14 @@ class Events {
 
 	on(event, func) {
 		this.event = event;
-		if (typeof func != "function")
-			throw new TypeError("Needs to be of type function.");
+		if (typeof func != "function") return;
 		this.func = func;
 
-		a.push(this);
+		a.push({ event: event, name: this.name, func: this.func });
 	}
 
 	emit(event) {
-		let e = a.filter((x) => x == this && x.event == event);
+		let e = [...a].filter((x) => x.name == this.name && x.event == event);
 		if (!e[0]) return;
 
 		e[0].func(...[...arguments].splice(1));

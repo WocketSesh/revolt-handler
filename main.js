@@ -15,12 +15,21 @@ const c = [];
  * });
  */
 class Command extends Events {
-	constructor({ name, aliases, description, requiredPermission }) {
+	constructor({ name, aliases, description, requiredRoles }) {
 		super();
 		this.name = name;
 		this.aliases = aliases ?? [];
 		this.description = description;
-		this.requiredPermission = requiredPermission;
+		this.requiredRoles = requiredRoles
+			? requiredRoles[0]
+				? requiredRoles[0]
+				: []
+			: [];
+		this.allRoles = requiredRoles
+			? requiredRoles[1]
+				? requiredRoles[1]
+				: false
+			: false;
 
 		c.push(this);
 	}
@@ -51,6 +60,17 @@ const checkForCommand = (message, prefix) => {
 	if (!r[0]) return;
 
 	r = r[0];
+
+	let userRoles = message.member.roles;
+
+	if (r.requiredRoles.length) {
+		console.log(userRoles);
+		if (r.allRoles && !r.requiredRoles.every((v) => userRoles.includes(v)))
+			return r.emit("invalidRoles", message, args, recieved);
+
+		if (!r.allRoles && !r.requiredRoles.some((v) => userRoles.includes(v)))
+			return r.emit("invalidRoles", message, args, recieved);
+	}
 
 	r.emit("ran", message, args, recieved);
 };
