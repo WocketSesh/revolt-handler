@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "revolt.js": "^5.0.1-alpha.7-patch.0"
+  }
+}
