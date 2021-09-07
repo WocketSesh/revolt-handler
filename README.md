@@ -23,7 +23,7 @@ const ping = new Command({
 
 ping.on("ran", (message, args, exec) => {
 	//This is what will run if someone uses the command
-	message.channel.sendMessage(`Pong! \`Took 0ms to execute\``).then((x) => {
+	message.channel.sendMessage("Pong!").then((x) => {
 		x.edit({
 			content: `Pong! \`Took ${new Date().getTime() - exec}ms to execute\``,
 		});
@@ -32,7 +32,6 @@ ping.on("ran", (message, args, exec) => {
 
 ping.on("invalidRoles", (message, args, exec) => {
 	// This is what runs when the user does not have the required roles.
-	console.log("invalidRoles");
 	message.channel.sendMessage("You do not have the required roles");
 });
 

@@ -64,7 +64,6 @@ const checkForCommand = (message, prefix) => {
 	let userRoles = message.member.roles;
 
 	if (r.requiredRoles.length) {
-		console.log(userRoles);
 		if (r.allRoles && !r.requiredRoles.every((v) => userRoles.includes(v)))
 			return r.emit("invalidRoles", message, args, recieved);
 
