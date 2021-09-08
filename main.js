@@ -68,13 +68,12 @@ const checkForCommand = (message, prefix) => {
 
 	let userRoles = message.member.roles;
 
-	if (r.requiredRoles.length) {
-		if (r.allRoles && !r.requiredRoles.every((v) => userRoles.includes(v)))
-			return r.emit("invalidRoles", message, args, recieved);
-
-		if (!r.allRoles && !r.requiredRoles.some((v) => userRoles.includes(v)))
-			return r.emit("invalidRoles", message, args, recieved);
-	}
+	if (
+		r.requiredRoles.length && r.allRoles
+			? !r.requiredRoles.every((v) => userRoles.includes(v))
+			: !r.requiredRoles.some((v) => userRoles.includes(v))
+	)
+		return r.emit("invalidRoles", message, args, recieved);
 
 	r.emit("ran", message, args, recieved);
 };
