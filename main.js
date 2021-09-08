@@ -1,6 +1,8 @@
 const { Events } = require("./EventEmitter/module");
 const fs = require("fs");
+const path = require('path')
 const c = [];
+
 
 /**
  * Create a new command object
@@ -83,7 +85,7 @@ const loadCommands = async (dir, folder, log) => {
 		.filter((file) => file.endsWith(".js"))
 		.forEach((file) => {
 			try {
-				require(`.${dir}/${file}`);
+				require(`../.${dir}/${file}`);
 				if (log) console.log(`loaded ${file}`);
 			} catch (e) {
 				if (log) console.log(`failed to load ${file}`);
