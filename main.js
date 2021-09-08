@@ -1,4 +1,5 @@
 const { Events } = require("./EventEmitter/module");
+const fs = require("fs");
 const c = [];
 
 /**
@@ -60,11 +61,9 @@ const checkForCommand = (message, prefix) => {
 	let command = message.content.split(" ")[0].slice(prefix.length),
 		args = message.content.split(" ").splice(1);
 
-	let r = c.filter((x) => x.name == command || x.aliases.includes(command));
+	let r = c.find((x) => x.name == command || x.aliases.includes(command));
 
-	if (!r[0]) return;
-
-	r = r[0];
+	if (!r) return;
 
 	let userRoles = message.member.roles;
 
@@ -78,4 +77,18 @@ const checkForCommand = (message, prefix) => {
 	r.emit("ran", message, args, recieved);
 };
 
-module.exports = { checkForCommand, Command };
+const loadCommands = async (dir, folder, log) => {
+	const files = await fs.promises.readdir(folder);
+	files
+		.filter((file) => file.endsWith(".js"))
+		.forEach((file) => {
+			try {
+				require(`.${dir}/${file}`);
+				if (log) console.log(`loaded ${file}`);
+			} catch (e) {
+				if (log) console.log(`failed to load ${file}`);
+			}
+		});
+};
+
+module.exports = { checkForCommand, Command, loadCommands };

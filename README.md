@@ -39,3 +39,11 @@ client.on("message", async (message) => {
 	checkForCommand(message, "!");
 });
 ```
+
+# Command Loader
+
+```js
+const { loadCommands } = require("revolt-handler");
+
+loadCommands("./commands", "commands", true); // First argument is to your commands folder, relative to the current file, second argument is the name of your commands folder, third argument is whether you want to console.log("loaded filename")
+```
