@@ -47,5 +47,5 @@ const { loadCommands } = require("revolt-handler");
 
 //First argument is the path to your commands folder, relative to the current file,
 //second argument is whether you want to console.log("loaded filename")
-loadCommands("./commands", "commands", true);
+loadCommands("./commands", true);
 ```
