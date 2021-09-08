@@ -45,8 +45,7 @@ client.on("message", async (message) => {
 ```js
 const { loadCommands } = require("revolt-handler");
 
-// First argument is to your commands folder, relative to the current file,
-//second argument is the name of your commands folder,
-//third argument is whether you want to console.log("loaded filename")
-loadCommands("./commands", "commands", true); 
+//First argument is the path to your commands folder, relative to the current file,
+//second argument is whether you want to console.log("loaded filename")
+loadCommands("./commands", "commands", true);
 ```

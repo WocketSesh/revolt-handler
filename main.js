@@ -1,8 +1,7 @@
 const { Events } = require("./EventEmitter/module");
 const fs = require("fs");
-const path = require('path')
+const path = require("path");
 const c = [];
-
 
 /**
  * Create a new command object
@@ -79,8 +78,8 @@ const checkForCommand = (message, prefix) => {
 	r.emit("ran", message, args, recieved);
 };
 
-const loadCommands = async (dir, folder, log) => {
-	const files = await fs.promises.readdir(folder);
+const loadCommands = async (dir, log) => {
+	const files = await fs.promises.readdir(dir);
 	files
 		.filter((file) => file.endsWith(".js"))
 		.forEach((file) => {
